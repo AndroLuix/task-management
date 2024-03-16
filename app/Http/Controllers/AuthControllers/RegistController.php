@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class RegistController extends Controller
 {
     public function index(){
-        return view('auth.register')
+        return view('auth.register');
     }
 }

@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>@yield('title')</title>
 </head>
-<body class="bg-black text-white">
+<body class="dark:bg-gray-900 text-white">
     <div class="container">
         @yield('content')
     </div>
