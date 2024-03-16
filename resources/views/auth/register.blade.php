@@ -4,7 +4,16 @@
 @section('title', 'Register')
 
 @section('content')
-    <section class="bg-gray-50 dark:bg-gray-900">
+
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
             <div
@@ -13,14 +22,14 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Create and account
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="#">
+                    <form method="POST" class="space-y-4 md:space-y-6" action="{{route('registration')}}">
 
 
 
 
                         <div class="flex items-center">
                             <input
-                            name="role"
+                            name="is_manager"
                              id="link-checkbox" type="checkbox" value="1"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -46,7 +55,7 @@
                             <label for="confirm-password"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
                                 password</label>
-                            <input type="confirm-password" name="confirm" id="confirm-password"
+                            <input type="password" name="password_confirmation" id="confirm-password"
                                 placeholder="••••••••"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required="">
@@ -77,5 +86,4 @@
                 </div>
             </div>
         </div>
-    </section>
 @endsection
