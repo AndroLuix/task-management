@@ -20,5 +20,12 @@ Route::get('/', function () {
 });
 
 Route::get('/login',[LoginController::class,'index'])->name('login');
+
+Route::post('/log',[LoginController::class,'log'])->name('log');
+
 Route::get('/gestier',[RegistController::class,'index'])->name('register');
 Route::post('/registration',[RegistController::class,'create'])->name('registration');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

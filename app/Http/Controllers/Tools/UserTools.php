@@ -5,20 +5,28 @@ namespace App\Http\Controllers\Tools;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class UserTools extends Controller
 {
     public function createUser(array $data){
        $validatorTool = new ValidateDataTools();
-          $validatorTool->validateUser($data);
+          $validateUser = $validatorTool->validateUser($data);
     
-        if($validatorTool->fails()){
-            return back()->
-            withErrors($validatorTool)
+        if($validateUser->fails()){
+            return redirect()->route('register')->
+            withErrors($validateUser)
                 ->withInput();
+                
+        }else{
+            $data['password'] = Hash::make($data['password']); 
+            $user =  User::create($data);
+            Auth::login($user);
+            return $user;
         }
-        
-       return  User::create($data);
 
     }
 }

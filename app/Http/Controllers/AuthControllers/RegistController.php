@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tools\UserTools;
 use App\Models\User;
 use Illuminate\Auth\CreatesUserProviders;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class RegistController extends Controller
@@ -16,10 +17,16 @@ class RegistController extends Controller
 
     public function create(Request $request){
 
-        $createUser = UserTools();
-        $createUser->createUser($request->all());
+        $createUser = new UserTools();
+        $result = $createUser->createUser($request->all());
 
-        return view('dashboard');
+        if ($result instanceof RedirectResponse) {
+            // Se la creazione dell'utente restituisce un redirect,
+            // reindirizziamo direttamente l'utente alla pagina di registrazione con gli errori di validazione
+            return $result;
+        }
+
+        return redirect()->route('dashboard');
        
     }
 }

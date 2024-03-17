@@ -8,6 +8,10 @@
    
     <script src="https://cdn.tailwindcss.com"></script>
     <title>@yield('title')</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('img/dot-arrow.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('img/dot-arrow.png')}}">
+
+
 </head>
 <body class="dark:bg-gray-900 text-white">
     <div class="container">
