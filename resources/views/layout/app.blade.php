@@ -14,8 +14,8 @@
 
 </head>
 <body class="dark:bg-gray-900 text-white">
-    <div class="container">
+    
         @yield('content')
-    </div>
+    
 </body>
 </html>

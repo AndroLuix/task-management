@@ -27,7 +27,7 @@ public function log(Request $req) {
         return redirect()->route('dashboard');
     }
 
-    return back()->withErrors(['email' => 'Credenziali non valide']);
+    return back()->withErrors(['email' => 'Invalid Credentials']);
 }
         
     
