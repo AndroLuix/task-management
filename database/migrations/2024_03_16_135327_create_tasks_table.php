@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
-            $table->unsignedBigInteger('projec_manager');
+            $table->unsignedBigInteger('projec_manager_id');
             $table->unsignedBigInteger('id_project');
             $table->string('title');
             $table->string('description');
             $table->foreign('employee_id')->references('id')->on('users')->onUpdate('cascade');
-            $table->foreign('projec_manager')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('projec_manager')->references('id_project_manager')->on('project')->onUpdate('cascade');
             $table->foreign('id_project')->references('id')->on('projects')->onDelete('cascade');
             $table->timestamps();
 

@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\table;
+
 return new class extends Migration
 {
     /**
@@ -11,15 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('description');
+        Schema::create('teams', function (Blueprint $table) {
             $table->unsignedBigInteger('project_manager_id');
+            $table->unsignedBigInteger('collaborator_id');
             $table->timestamps();
-            $table->foreign('project_manager_id')->references('project_manager_id')->on('teams')->onDelete('cascade');
-
-            
+            $table->foreign('project_manager_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('collaborator_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('teams');
     }
 };

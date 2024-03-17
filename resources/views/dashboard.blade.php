@@ -5,11 +5,6 @@
 @include('layout.navbar')
 @section('content')
 
-<style>
-    div{
-        border: solid 1px white;
-    }
-</style>
 <div class="min-h-screen flex flex-col  justify-center">
     <div class=" mx-auto">
         <div class="mb-10">

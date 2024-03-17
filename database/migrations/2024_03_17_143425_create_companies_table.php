@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->unsignedBigInteger('project_manager_id');
+            $table->string('name');
+            $table->unsignedBigInteger('prject_manager_id');
             $table->timestamps();
-            $table->foreign('project_manager_id')->references('project_manager_id')->on('teams')->onDelete('cascade');
-
-            
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('companies');
     }
 };
