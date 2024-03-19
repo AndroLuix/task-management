@@ -9,7 +9,7 @@ CREATE TABLE users (
                        name varchar(255),
                        email varchar(255),
                        email_verified_at timestamp NULL DEFAULT NULL,
-                       image VARCHAR(255) NOT NULL,
+                       image VARCHAR(255),
                        password varchar(255),
                        remember_token varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
                        created_at timestamp NULL DEFAULT NULL,
@@ -19,25 +19,25 @@ CREATE TABLE users (
 
 
 
--- Creazione della tabella `repo`
+-- Creazione della tabella `FOLDER`
 /*
- una repo ha un p.manager (come admin)
- il p.manager ha la possibilità di creare più repo
+ una FOLDER ha un p.manager (come admin)
+ il p.manager ha la possibilità di creare più FOLDER
 
  */
-CREATE TABLE repo (
-                           id bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                           name varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-                           project_manager_id bigint unsigned,
-                           image VARCHAR(255),
-                           created_at timestamp NULL DEFAULT NULL,
-                           updated_at timestamp NULL DEFAULT NULL,
-                           FOREIGN KEY (project_manager_id) REFERENCES users (id)
+CREATE TABLE folders (
+                        id bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                        name varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                        project_manager_id bigint unsigned,
+                        image VARCHAR(255),
+                        created_at timestamp NULL DEFAULT NULL,
+                        updated_at timestamp NULL DEFAULT NULL,
+                        FOREIGN KEY (project_manager_id) REFERENCES users (id)
 );
 
 -- Creazione della tabella `projects`
 /*
-    un progetto ha un p.manager e viene assegnato per ogni repo.
+    un progetto ha un p.manager e viene assegnato per ogni FOLDER.
 
 */
 CREATE TABLE projects (
@@ -46,7 +46,7 @@ CREATE TABLE projects (
                           description varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
 
                           project_manager_id bigint unsigned NOT NULL,
-                          repo_id BIGINT UNSIGNED,
+                          folder_id BIGINT UNSIGNED,
 
                           is_archived INT NOT NULL DEFAULT 0,
                           is_terminated INT NOT NULL DEFAULT 0,
@@ -55,15 +55,7 @@ CREATE TABLE projects (
                           updated_at timestamp NULL DEFAULT NULL,
                           CONSTRAINT projects_project_manager_id_foreign
                               FOREIGN KEY (project_manager_id) REFERENCES users (id) ON DELETE CASCADE,
-                          FOREIGN KEY (repo_id) REFERENCES repo(id) ON UPDATE CASCADE
-                      );
-
--- UNA REPO HA PIU' PROGETTI
-CREATE TABLE repo_projects(
-    id_repo BIGINT UNSIGNED,
-    id_project BIGINT UNSIGNED,
-    FOREIGN KEY  (id_repo) references repo(id),
-    foreign key (id_project) references repo(id)
+                          FOREIGN KEY (folder_id) REFERENCES folder(id) ON UPDATE CASCADE  ON DELETE CASCADE
 );
 
 
@@ -99,7 +91,7 @@ CREATE TABLE tasks (
 CREATE TABLE teams (
                        project_manager_id bigint unsigned NOT NULL,
                        collaborator_id bigint unsigned NOT NULL,
-                       repo_id bigint unsigned NOT NULL, -- Correzione: usare backtick per il nome della colonna
+                       folder_id bigint unsigned NOT NULL, -- Correzione: usare backtick per il nome della colonna
                        created_at timestamp NULL DEFAULT NULL,
                        updated_at timestamp NULL DEFAULT NULL,
                        CONSTRAINT teams_project_manager_id_foreign
@@ -107,7 +99,7 @@ CREATE TABLE teams (
                        CONSTRAINT teams_collaborator_id_foreign
                            FOREIGN KEY (collaborator_id) REFERENCES users (id) ON DELETE CASCADE,
                        CONSTRAINT teams_agency_id_foreign
-                           FOREIGN KEY (repo_id) REFERENCES repo (id)
+                           FOREIGN KEY (folder_id) REFERENCES folder (id)
 );
 -- OGNI TASK HA PIU PARTECIPANTI
 /*
@@ -115,31 +107,31 @@ CREATE TABLE teams (
  NON HO MESSO CONTROLLI, POICHE' VIENE EFFETTUATO DALLA TAB COLLABORATORS
  */
 CREATE TABLE task_participants(
-                                  id_task int not null,
-                                  id_user int not null,
-    constraint partecipant_id_task_fg foreign key (id_task) references tasks(id),
-    constraint partecipant_id_user_fg foreign key (id_user) references users('id')
+                                  id_task bigint unsigned not null,
+                                  id_user bigint unsigned not null,
+                                  CONSTRAINT partecipant_id_task_fg FOREIGN KEY (id_task) REFERENCES tasks(id),
+                                  CONSTRAINT partecipant_id_user_fg FOREIGN KEY (id_user) REFERENCES users(id)
 );
-
 -- Creazione della tabella `collaborators`
 /*
  TABELLA FONDAMENTALE PER DARE O VIETARE L'ACCESSO AI NUOVI COLLABORATORI
  UNA VOLTA AVUTO L'ACCESSO, POTRANNO EFFETTUARE LE TASK
 
  */
-CREATE TABLE collaborators (
-                               id bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                               project_manager_id BIGINT UNSIGNED NOT NULL,
-                               collaborator_id bigint unsigned NOT NULL,
-                               project_id bigint unsigned NOT NULL,
-                               is_verified INT NOT NULL DEFAULT 0,
-                               created_at timestamp NULL DEFAULT NULL,
-                               updated_at timestamp NULL DEFAULT NULL,
-                               CONSTRAINT collaborators_user_id_foreign
-                                   FOREIGN KEY (collaborator_id) REFERENCES users (id)
-                                       ON DELETE CASCADE,
-                               CONSTRAINT collaborators_project_id_foreign
-                                   FOREIGN KEY (project_id)
-                                       REFERENCES projects (id) ON DELETE CASCADE
+CREATE TABLE collaborators_project (
+                                       id bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                       project_manager_id BIGINT UNSIGNED NOT NULL, -- id user che crea progetto
+                                       collaborator_id bigint unsigned NOT NULL, -- id user
+                                       project_id bigint unsigned NOT NULL, -- id project
+
+                                       is_verified INT NOT NULL DEFAULT 0,
+                                       created_at timestamp NULL DEFAULT NULL,
+                                       updated_at timestamp NULL DEFAULT NULL,
+                                       CONSTRAINT collaborators_user_id_foreign
+                                           FOREIGN KEY (collaborator_id) REFERENCES users (id)
+                                               ON DELETE CASCADE,
+                                       CONSTRAINT collaborators_project_id_foreign
+                                           FOREIGN KEY (project_id)
+                                               REFERENCES projects (id) ON DELETE CASCADE
 );
 

@@ -9,7 +9,7 @@
     <div class="max-w-4xl mx-auto">
         <div class="mb-10">
             <h1 class="text-3xl font-bold underline mb-4">
-                Hello!
+                Hello! 
             </h1>
             <div id="imageContainer" style="position: relative;">
                 <img id="movingImage" src="{{ asset('img/dot-arrow.png') }}" width="75" height="75" 

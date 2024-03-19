@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'is_manager',
         'email',
+        'image',
         'password',
         
     ];

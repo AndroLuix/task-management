@@ -1,0 +1,52 @@
+/* dashboard page */
+@keyframes moveImage {
+    0% { left: 0; }
+    100% { left: 260px; } /* Cambia questo valore in base alle tue preferenze */
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.hiddenText {
+    opacity: 0;
+    animation: fadeInText 3s forwards;
+}
+
+.moveAnimation {
+    animation: moveImage 3s forwards;
+}
+
+@media (max-width: 640px) {
+    #imageContainer {
+        position: relative;
+        left: 0;
+    }
+    @keyframes moveImage {
+    0% { left: 0; }
+    100% { left: 80%; } /* Cambia questo valore in base alle tue preferenze */
+}
+
+    #movingImage {
+        position: static;
+    }
+
+    #hiddenText {
+        opacity: 1;
+        position: static;
+    }
+
+    .mt-20 {
+        margin-top: 2rem;
+    }
+
+    .m-5 {
+        margin: 1.25rem;
+    }
+    #hiddenText{
+        width: 80%;
+    }
+}
+/* end dashboard page */
