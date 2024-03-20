@@ -40,13 +40,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/folders', [FolderController::class, 'index'])->name('folder.index');
     Route::post('/folders/create', [FolderController::class, 'create'])->name('folder.create');
 
-    Route::get('/project', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
     // non è necessaria la pagina per creare il progetto, poiché si trova nel controller precedente
 
-    Route::post('/project/create', [ProjectController::class, 'create'])->name('projects.create'); // prende dati per crearlo
+    Route::post('/project/create', [ProjectController::class, 'create'])->name('project.create'); // prende dati per crearlo
 
-    Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
-    Route::put('/project/{project}', [ProjectController::class, 'update'])->name('projects.update');
-    Route::put('/project/{id}/archive', [ProjectController::class, 'archive'])->name('projects.archive');
-    Route::delete('/project/{project}', [ProjectController::class, 'delete'])->name('projects.delete');
+    Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
+    Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
+    Route::put('/project/{id}/archive', [ProjectController::class, 'archive'])->name('project.archive');
+    Route::delete('/project/{project}', [ProjectController::class, 'delete'])->name('project.delete');
+
+    /**
+     * Folder Routes
+     */
+    Route::get('/folders',[FolderController::class,'index'])->name('folder.index');
+    Route::get('/folder/{id}',[FolderController::class,'edit'])->name('folder.edit');
 });

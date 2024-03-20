@@ -1,45 +1,60 @@
-<!-- home.blade.php -->
 @extends('layout.app')
 
-@section('title', 'welcome to Accellera')
+@section('Your Folders', 'welcome to Accellera')
 @include('layout.navbar')
 @section('content')
+    <style>
+        .fa-plus {
+            padding: 5px;
 
-    <div class="min-h-screen flex flex-col  justify-center">
-        <div class=" mx-auto">
-            <div class="mb-10">
-                <h1 class="text-3xl font-bold underline mb-5">
-                    Hello {{ Auth::user()->name }}!
-                </h1>
-                <div id="imageContainer" style="position: relative;">
-                    <img id="movingImage" src="{{ asset('img/dot-arrow.png') }}" width="75" height="75"
-                        style="position:absolute; left:0; z-index: 999;">
-                    <p id="hiddenText" class="text-lg hiddenText" style="opacity: 0;">
-                        Welcome to Accellera. <br>
-                        We're glad to have you here!
-                    </p>
-                </div>
-                <div class="mt-20">Manage Your Task for Your Project</div>
-            </div>
-            
-        </div>
-        <div class=" text-center mt-20">
-            <div>
-                <a href=""
-                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                    Create a Folder <span><i class="fa fa-folder ml-2" aria-hidden="true"></i>
-                    </span>
-                </a>
-                <p class="text-xl  p-5 font-semibold text-white-600/100 dark:text-white-500/100">
-                    Create a folder to be able to store projects inside and better organize your work!
-                </p>
-    
-            </div>
-        </div>
+            transition: all 1s
+        }
+
+        .fa-plus:hover {
+            background: green;
+            border-radius: 20%;
+        }
+    </style>
+    <div class="max-width: 1024px m-20">
+        <table class="w-full border-collapse border border-gray-800 dark:border-gray-700 bg-gray-900 dark:bg-gray-800">
+            <thead>
+                <tr>
+                    <th
+                        class="py-2 px-4 bg-gray-700 dark:bg-gray-600 border border-gray-800 dark:border-gray-700 text-gray-300 dark:text-gray-300">
+                        Folder</th>
+                    <th
+                        class="py-2 px-4 bg-gray-700 dark:bg-gray-600 border border-gray-800 dark:border-gray-700 text-gray-300 dark:text-gray-300">
+                        Projects</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($folders as $folder)
+                    <tr>
+                        <td class="py-2 px-2 border border-gray-800 dark:border-gray-700 text-gray-300 dark:text-gray-300">
+                            {{ $folder->name }}
+                            <span>
+                                <a href="#"  title="Create a new project in {{$folder->name}}" >
+                                    <i class="fa fa-plus" style="float: right" aria-hidden="true">
+                                    </i>
+                                </a>
+                            </span>
+                        </td>
+                        <td class="py-2 px-4 border border-gray-800 dark:border-gray-700 text-gray-300 dark:text-gray-300">
+                            @if ($folder->projects->count() > 0)
+                                <ul>
+                                    @foreach ($folder->projects as $project)
+                                        <li>{{ $project->title }}</li>
+                                        <!-- Aggiungi qui altri dettagli del progetto se necessario -->
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p class="font-normal text-gray-500 dark:text-gray-400">No projects</p>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-
- 
-
     <script src="{{ asset('js/dashboard.js') }}"></script>
-
 @endsection

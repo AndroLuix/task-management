@@ -11,7 +11,14 @@ class Projects extends Model
 
     protected $fillable = [
         'project_manager_id',
+        'folder_id',
         'title',
-        'descripton',
+        'description',
+        'is_archived',
+        'is_terminated'
     ];
+
+    public function folder(){
+        $this->belongsTo(Folder::class);
+    }
 }

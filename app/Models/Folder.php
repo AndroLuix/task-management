@@ -15,13 +15,20 @@ class Folder extends Model
         'name',
         'project_manager_id',
         'image',
+        
     ];
 
     public static function getMyFolders($userId) {
         return self::where('project_manager_id', $userId)->get();
     }
+    public function whereManager($userId) {
+        return $this->where('project_manager_id', $userId);
+    }
     
     public static function findOrFailsFolder($userId){
         self::where('project_manager_id',$userId)->firstOrFail();
+    }
+    public function projects(){
+       return $this->hasMany(Projects::class, 'folder_id');
     }
 }

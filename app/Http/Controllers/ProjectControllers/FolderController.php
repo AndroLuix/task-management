@@ -11,9 +11,11 @@ class FolderController extends Controller
 {
    // gestione dei folders
 
-   public function idenx()
+   public function index()
    {
-      return view('folder.index');
+      $userID = Auth::user()->id;
+      $folders = Folder::with('projects')->whereProjectManagerId($userID)->get();
+      return view('folder.index',compact('folders'));
    }
 
    public function create(Request $request)

@@ -15,7 +15,7 @@ class LoginController extends Controller
 
         if(Auth::user()){
             // se l'utente esce dal sito, ma l'autenticazione è presente dovrebbe funzionare. ma è da testare in cloud.
-            return view('dashboard');
+            return redirect()->route('dashboard');
         }
 
         return view('auth.login');

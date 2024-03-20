@@ -26,7 +26,7 @@
             </div>
 
             @if (session('success'))
-            <div id="pop-up" class="bg-green-100 border border-green-400 m-5 text-green-700 px-4 p-3 rounded relative"
+            <div onclick="closeAlert('pop-up')" id="pop-up" class="bg-green-100 border border-green-400 m-5 text-green-700 px-4 p-3 rounded relative"
                 role="alert">
                 <span class="block sm:inline">{{ session('success') }}</span>
                 <span onclick="closeAlert('pop-up')" class="absolute top-0 bottom-0 right-0 px-4 py-3">
@@ -42,6 +42,22 @@
         </div>
 
 
+        @if (count($folders) > 0)
+        <div class=" text-center mt-20">
+            <div>
+                <a href="#form-project-in" onclick="toggleForm('form-project')"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    Create a Project <span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+    
+                    </span>
+                </a>
+                <p class="text-xl  p-5 font-semibold text-white-600/100 dark:text-white-500/100">
+                    Create a project to get started
+                </p>
+    
+            </div>
+        </div>
+    @endif
 
         @if (Auth::user()->is_manager == 1)
             <div class=" text-center mt-20">
@@ -69,22 +85,7 @@
         
     </div>
 
-    @if (count($folders) > 0)
-    <div class=" text-center mt-20">
-        <div>
-            <a href="#form-project-in" onclick="toggleForm('form-project')"
-                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                Create a Project <span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-
-                </span>
-            </a>
-            <p class="text-xl  p-5 font-semibold text-white-600/100 dark:text-white-500/100">
-                Create a project to get started
-            </p>
-
-        </div>
-    </div>
-@endif
+ 
 
 <div id="form-project" style="display: none" class=" text-center mt-20">
     <!-- form -->

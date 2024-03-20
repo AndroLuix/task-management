@@ -8,3 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     image.classList.add('moveAnimation');
 });
+
+function closeAlert(idElement){
+
+    document.getElementById(idElement).style.display = 'none'
+
+}
