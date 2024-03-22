@@ -28,6 +28,19 @@ class ProjectController extends Controller
         else
              return back()->withErrors('Something went wrong during the creation of the project');
     }
+    public function exg(Request $req){
+        //cambia la cartella 
+        $data =  $req->all();
+       // return dd($data);
+
+       $project = Projects::find($data['id']);
+       $project->folder_id = (int)$data['folder_id'];
+       $project->save();
+       return back();
+
+
+
+    }
 
     public function edit(){
         // visualizza la pagina di modifica di un progetto

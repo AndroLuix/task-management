@@ -47,6 +47,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
     Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
+
+
+    Route::post('/project/exchange', [ProjectController::class, 'exg'])->name('project.exg');
+
+
     Route::put('/project/{id}/archive', [ProjectController::class, 'archive'])->name('project.archive');
     Route::delete('/project/{project}', [ProjectController::class, 'delete'])->name('project.delete');
 

@@ -60,3 +60,10 @@ function scrollToElement(element) {
 
   requestAnimationFrame(scrollAnimation);
 }
+function toggleFormWithParam(idForm, folderName, folderId){
+    var selectElement = $("select");
+    $("#" + idForm).toggle(1000);
+    selectElement.append("<option value='" + folderId + "' selected>" + folderName + "</option>");
+
+}
+

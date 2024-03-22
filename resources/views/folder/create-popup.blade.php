@@ -1,4 +1,4 @@
-
+<div>
 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto">
     @if ($errors->any())
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded relative" role="alert">
@@ -44,4 +44,5 @@
             </form>
         </div>
     </div>
+</div>
 </div>
