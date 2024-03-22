@@ -13,10 +13,13 @@
 
     <!-- style -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <!-- awesome icon -->
+     <!-- awesome icon 4 -->
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- awesome icon 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
-
-
+   
 
 </head>
 <body class="dark:bg-gray-900 text-white">

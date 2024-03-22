@@ -38,8 +38,6 @@ class ProjectController extends Controller
        $project->save();
        return back();
 
-
-
     }
 
     public function edit(){
@@ -50,8 +48,20 @@ class ProjectController extends Controller
         // prende i dati per modificare il progetto
     }
 
-    public function archive(){
+    public function archive($id){
         // archivia un progetto
+        $project = Projects::find($id);
+        if($project->is_archived == 0){
+            $project->is_archived = 1;
+            $project->save();
+        }else{
+            $project->is_archived = 0;
+            $project->save();
+        }
+
+
+        return back();
+
     }
 
     public function delete(){

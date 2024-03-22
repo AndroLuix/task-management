@@ -21,4 +21,22 @@ class Projects extends Model
     public function folder(){
         $this->belongsTo(Folder::class);
     }
+    public function isTerminated(){
+        if($this->where('is_terminated',1)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public function isArchived(){
+        if($this->where('is_archived',1)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    
+
 }
