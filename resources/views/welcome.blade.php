@@ -5,6 +5,10 @@
 
 @section('content')
 
+@cookieconsentscripts
+
+@cookieconsentview
+
 <div class="min-h-screen flex flex-col itecenterms- justify-center">
     <div class="max-w-4xl mx-auto">
         <div class="mb-10">

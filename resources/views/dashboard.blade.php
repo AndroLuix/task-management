@@ -2,12 +2,17 @@
 @extends('layout.app')
 
 @section('title', 'welcome to Accellera')
-@include('layout.navbar')
+<style>
+.mb20{
+margin-bottom: 200px
+}
+    </style>
 @section('content')
-
-    <div class="min-h-screen flex flex-col justify-center">
+<div class="mb20">@include('layout.navbar')
+</div>  
+  <div class="min-h-screen flex flex-col justify-center">
         <div class=" mx-auto">
-            <div class="mb-10">
+            <div class=" pb-10">
                 <h1 class="text-3xl font-bold underline mb-5">
                     Hello {{ Auth::user()->name }}!
                 </h1>

@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        // ...
+        App\Providers\RouteServiceProvider::class,
+        // IMPORTANT: add the following line AFTER "App\Providers\RouteServiceProvider::class,"
+        App\Providers\CookiesServiceProvider::class,
+    ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------

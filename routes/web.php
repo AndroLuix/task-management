@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthControllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthControllers\LoginController;
 use App\Http\Controllers\AuthControllers\RegistController;
+use App\Http\Controllers\CookiesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectControllers\FolderController;
 use App\Http\Controllers\ProjectControllers\ProjectController;
@@ -31,6 +32,8 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/gestier', [RegistController::class, 'index'])->name('register');
 Route::post('/registration', [RegistController::class, 'create'])->name('registration');
+
+Route::get('/cookie-consent',[CookiesController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {
