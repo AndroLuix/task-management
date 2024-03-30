@@ -15,7 +15,11 @@ class Projects extends Model
         'title',
         'description',
         'is_archived',
-        'is_terminated'
+        'is_terminated',
+        'is_private',
+        'link',
+        'propic',
+
     ];
 
     public function folder(){
@@ -36,6 +40,8 @@ class Projects extends Model
             return false;
         }
     }
+
+    
 
     
 

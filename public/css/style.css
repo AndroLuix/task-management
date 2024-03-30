@@ -1,13 +1,28 @@
 /* dashboard page */
 @keyframes moveImage {
-    0% { left: 0; }
-    100% { left: 260px; } /* Cambia questo valore in base alle tue preferenze */
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 260px;
+    }
+
+    /* Cambia questo valore in base alle tue preferenze */
 }
 
 @keyframes fadeInText {
-    0% { opacity: 0; }
-    80% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .hiddenText {
@@ -24,10 +39,18 @@
         position: relative;
         left: 0;
     }
+
     @keyframes moveImage {
-    0% { left: 0; }
-    100% { left: 80%; } /* Cambia questo valore in base alle tue preferenze */
-}
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: 80%;
+        }
+
+        /* Cambia questo valore in base alle tue preferenze */
+    }
 
     #movingImage {
         position: static;
@@ -45,8 +68,56 @@
     .m-5 {
         margin: 1.25rem;
     }
-    #hiddenText{
+
+    #hiddenText {
         width: 80%;
     }
 }
+
 /* end dashboard page */
+
+
+/* index folder */
+.fa-plus {
+    padding: 5px;
+
+    transition: all 1s
+}
+
+.fa-plus:hover {
+    background: green;
+    border-radius: 20%;
+}
+
+.float-r {
+    float: right;
+}
+
+.make-pointer:hover {
+    cursor: pointer;
+}
+
+.myborder {
+    border: solid 1px rgba(0, 0, 0, 0);
+    border-radius: 20%;
+    padding: 10px;
+    transition: all 1s
+}
+
+.myborder:hover {
+    background: rgb(78, 203, 157);
+    border: white;
+}
+
+.view-p {
+    padding: 10px;
+    border-radius: 20%;
+    transition: all 1s;
+
+}
+
+.view-p:hover {
+    background: rgb(31, 123, 89);
+    color: white;
+
+}

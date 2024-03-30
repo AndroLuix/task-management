@@ -1,0 +1,5 @@
+USE db_accellera;
+ALTER TABLE project
+ADD COLUMN link VARCHAR(255), 
+ADD COLUMN is_private BOOLEAN DEFAULT 1;
+ADD COLUMN propic VARCHAR(255);

@@ -3,15 +3,29 @@
 namespace App\Http\Controllers\ProjectControllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Folder;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
-    public function index(){
+    public function index( $idfolder = null){
         // visualizza tutti i progetti creati
-        
+        // null nel caso l'utente vuole vedere i progetti pubblici 
+        if(!isset($idfolder)){
+            // visualizza progetti pubblici
+            Projects::where('is_public',1);
+        }
+    
+    }
+
+    public function getByFolder($idProject , $idFolder){
+    $projects =  Projects::where('folder_id', $idFolder)->get();
+    $projectFirst = Projects::findOrFail($idProject);
+    
+    return view('.projects.projects', compact('projects','projectFirst'));
+    
     }
 
     public function create(Request $request){
@@ -40,12 +54,22 @@ class ProjectController extends Controller
 
     }
 
-    public function edit(){
-        // visualizza la pagina di modifica di un progetto
+    public function edit($idprject){
+        $project = Projects::findOrFail($idprject);
+        $allProjects = Projects::where('project_manager_id',Auth::id())->get();
+
+
+        return view('projects.edit', compact('project','allProjects'));
     }
 
-    public function update(){
+    public function update(Request $request, $project){
         // prende i dati per modificare il progetto
+        dd($request->all());
+        $updateProject = Projects::find($project)->update($request->all());
+        if($updateProject)
+        return back()->with('success',"Project {$updateProject->title} has been successfully updated!");
+        else         return back()->withErrors("Ooops! There was an error in the system, please contact us to resolve it");
+
     }
 
     public function archive($id){

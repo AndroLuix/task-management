@@ -10,7 +10,6 @@
     }
  </style>
 <p>...</p>
-@cookieconsentview
 <h2 class="text-2xl font-semibold mt-8 mb-4">How do we use cookies?</h2>
 @foreach(Cookies::getCategories() as $category)
 <table class="w-full mb-8">

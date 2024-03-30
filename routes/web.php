@@ -30,7 +30,7 @@ Route::post('/log', [LoginController::class, 'log'])->name('log');
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('/gestier', [RegistController::class, 'index'])->name('register');
+Route::get('/restier', [RegistController::class, 'index'])->name('register');
 Route::post('/registration', [RegistController::class, 'create'])->name('registration');
 
 Route::get('/cookie-consent',[CookiesController::class, 'index']);
@@ -43,12 +43,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/folders', [FolderController::class, 'index'])->name('folder.index');
     Route::post('/folders/create', [FolderController::class, 'create'])->name('folder.create');
 
+    // visualizza tutti i progetti
     Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
+
+    //presel singolo progetto
+    Route::get('/projects/{idProject}/{idFolder}',[ProjectController::class,'getByFolder'])->name('project.index.tag');
     // non è necessaria la pagina per creare il progetto, poiché si trova nel controller precedente
 
     Route::post('/project/create', [ProjectController::class, 'create'])->name('project.create'); // prende dati per crearlo
 
     Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
+    
     Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
 
 

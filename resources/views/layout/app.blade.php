@@ -22,7 +22,7 @@
    
 
 </head>
-<body class="dark:bg-gray-900 text-white">
+<body class="dark:bg-gray-900 mt-20 text-white">
     
         @yield('content')
     

@@ -11,7 +11,7 @@
 
 <div class="min-h-screen flex flex-col itecenterms- justify-center">
     <div class="max-w-4xl mx-auto">
-        <div class="mb-10">
+        <div class="">
             <h1 class="text-3xl font-bold underline mb-4">
                 Hello! 
             </h1>

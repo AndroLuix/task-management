@@ -3,9 +3,7 @@
 
 @section('title', 'welcome to Accellera')
 <style>
-.mb20{
-margin-bottom: 200px
-}
+
     </style>
 @section('content')
 <div class="mb20">@include('layout.navbar')

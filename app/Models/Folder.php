@@ -31,5 +31,12 @@ class Folder extends Model
     public function projects(){
        return $this->hasMany(Projects::class, 'folder_id');
     }
+
+  
+
+    public static function folderId($idFolder)
+    {
+        return self::where('folder_id', $idFolder)->get();
+    }
     
 }
